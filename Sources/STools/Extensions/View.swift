@@ -46,7 +46,7 @@ public extension View {
     func foreground<Content: View>(@ViewBuilder view: @escaping () -> Content) -> some View {
         self.overlay(view()).mask(self)
     }
-    func onTask(id: (any Equatable)? = nil, priority: _Concurrency.TaskPriority? = nil, _ task: @Sendable @escaping () async -> Void) -> AnyView {
+    func onTask<ID: Equatable>(id: ID? = nil, priority: _Concurrency.TaskPriority? = nil, _ task: @Sendable @escaping () async -> Void) -> AnyView {
         if #available(iOS 15.0, macOS 12.0, watchOS 8.0, *) {
             if let id, let priority {
                 return AnyView(
