@@ -12,7 +12,7 @@ struct EmptyStateModifier<PlaceHolder: View>: ViewModifier {
     let placeHolder: PlaceHolder
     func body(content: Content) -> some View {
         ZStack {
-            if isEmpty {//Thanks to @Asperi
+            if isEmpty {
                 placeHolder
             }
             content
