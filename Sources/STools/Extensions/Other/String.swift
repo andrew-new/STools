@@ -45,4 +45,16 @@ public extension String {
     subscript(i: Int) -> String {
         return String(self[index(startIndex, offsetBy: i)])
     }
+    var int: Int? {
+        return Int(self)
+    }
+    var int64: Int64? {
+        return Int64(self)
+    }
+    var int32: Int32? {
+        return Int32(self)
+    }
+    var double: Double? {
+        return Double(self)
+    }
 }

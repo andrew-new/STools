@@ -34,3 +34,15 @@ public enum ImageQuality: CGFloat {
 public enum DateInterval {
     case day, week, month, year
 }
+
+public enum ViewEdge {
+    case top, bottom, leading, trailing, horizontal, vertical
+}
+
+public enum SwipeEdge {
+    case leading, trailing
+    @available(iOS 15.0, macOS 12.0, *)
+    var horizontalEdge: HorizontalEdge {
+        return self == .leading ? .leading: .trailing
+    }
+}
