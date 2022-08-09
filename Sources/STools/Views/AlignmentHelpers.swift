@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension View {
+public extension View {
 ///STools: Adjust this view's frame with a fallback frame.
     @ViewBuilder func framey(width: CGFloat, height: CGFloat, masterWidth: CGFloat? = nil, masterHeight: CGFloat? = nil, master: Bool) -> some View {
         self
