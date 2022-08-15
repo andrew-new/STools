@@ -30,13 +30,15 @@ public extension View {
             self
         }
     }
+    #if canImport(Charts) 
 ///STools: Listen to changes made to multiple properties.
     @ViewBuilder func onChange(of values: any Equatable..., completion: @escaping () -> Void) -> some View {
         self
             .onReceive(values.publisher) { newValue in
                 completion()
             }
-    }
+    
+        #endif
 ///STools: Display a placeholder when this view is empty.
     @ViewBuilder func emptyState<Content: View>(@ViewBuilder content: () -> Content) -> some View {
         self.modifier(EmptyStateModifier(placeHolder: content()))
