@@ -37,7 +37,7 @@ public extension View {
             .onReceive(values.publisher) { newValue in
                 completion()
             }
-    
+    }
         #endif
 ///STools: Display a placeholder when this view is empty.
     @ViewBuilder func emptyState<Content: View>(@ViewBuilder content: () -> Content) -> some View {
