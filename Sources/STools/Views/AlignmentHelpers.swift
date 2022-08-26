@@ -51,12 +51,12 @@ public extension View {
         }
     }
 ///STools: Pin this view relative to another.
-    @ViewBuilder func alignment<Content: View>(with view: @escaping () -> Content, pinned edge: Edge, spacing: CGFloat? = nil) -> some View {
+    @ViewBuilder func alignmeny<Content: View>(edge: Edge, spacing: CGFloat? = nil, @ViewBuilder view: @escaping () -> Content) -> some View {
         self
             .alignment(with: view(), pinned: edge, spacing: spacing)
     }
 ///STools: Pin this view relative to another.
-    @ViewBuilder func alignment<Content: View>(with view: Content, pinned edge: Edge, spacing: CGFloat? = nil) -> some View {
+    @ViewBuilder func alignment<Content: View>(edge: Edge, spacing: CGFloat? = nil, view: Content) -> some View {
         switch edge {
             case .top:
                 VStack(spacing: spacing) {
