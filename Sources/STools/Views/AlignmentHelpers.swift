@@ -97,4 +97,23 @@ public extension View {
                 }
         }
     }
+    @ViewBuilder func onChange(of element: SizeChange, action: @escaping (CGFloat) -> Void) -> some View {
+        self
+            .background(
+                GeometryReader { reader in
+                    Color.clear
+                        .onAppear {
+                            action(reader.frame(in: .global).height)
+                        }.change(of: element == .height ? reader.frame(in: .global).height: reader.frame(in: .global).width) { newValue in
+                            action(newValue)
+                        }
+                }
+            )
+    }
+    @ViewBuilder func onChange(of element: SizeChange, newValue: Binding<CGFloat>) -> some View {
+        self
+            .onChange(of: element) { value in
+                newValue.wrappedValue = value
+            }
+    }
 }

@@ -36,6 +36,10 @@ public enum ImageQuality: CGFloat {
     case highest = 1
 }
 
+public enum SizeChange: Int {
+    case height, width
+}
+
 public enum DateInterval {
     case day, week, month, year
 }
