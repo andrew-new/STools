@@ -47,7 +47,7 @@ public enum ViewAxis {
 public enum SwipeEdge {
     case leading, trailing
     @available(iOS 15.0, macOS 12.0, *)
-    var horizontalEdge: HorizontalEdge {
+    public var horizontalEdge: HorizontalEdge {
         return self == .leading ? .leading: .trailing
     }
 }

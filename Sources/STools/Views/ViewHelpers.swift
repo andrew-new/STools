@@ -29,7 +29,7 @@ public extension View {
             .foreground(view())
     }
 ///STools: Adds custom swipe actions to a row in a list.
-    @ViewBuilder func swipeActions<Content: View>(edge: SwipeEdge, allowsFullSwipe: Bool, @ViewBuilder content: @escaping () -> Content) -> some View {
+    @ViewBuilder func onSwipe<Content: View>(edge: SwipeEdge, allowsFullSwipe: Bool, @ViewBuilder content: @escaping () -> Content) -> some View {
         if #available(iOS 15.0, macOS 12.0, *) {
             self
                 .swipeActions(edge: edge.horizontalEdge, allowsFullSwipe: allowsFullSwipe, content: content)
@@ -38,4 +38,3 @@ public extension View {
         }
     }
 }
-
