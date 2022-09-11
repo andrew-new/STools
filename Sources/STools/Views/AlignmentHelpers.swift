@@ -14,7 +14,7 @@ public extension View {
             .frame(width: master ? (masterWidth ?? width): width, height:  master ? (masterHeight ?? height): height)
     }
 ///STools: Pin this view to an Edge.
-    @ViewBuilder func pin(to edge: ViewEdge) -> some View {
+    @ViewBuilder func pin(to edge: Edge) -> some View {
         switch edge {
             case .top:
                 VStack {
@@ -36,6 +36,11 @@ public extension View {
                     Spacer()
                     self
                 }
+        }
+    }
+///STools: Center the view along an axis.
+    @ViewBuilder func center(_ axis: ViewAxis) -> some View {
+        switch axis {
             case .horizontal:
                 HStack {
                     Spacer()
@@ -51,31 +56,43 @@ public extension View {
         }
     }
 ///STools: Pin this view relative to another.
-    @ViewBuilder func alignment<Content: View>(edge: Edge, spacing: CGFloat? = nil, @ViewBuilder view: @escaping () -> Content) -> some View {
+    @ViewBuilder func alignment<Content: View>(edge: Edge, spacing: CGFloat? = nil, expand: Bool = false, @ViewBuilder view: @escaping () -> Content) -> some View {
         self
-            .alignment(edge: edge, spacing: spacing, view: view())
+            .alignment(edge: edge, spacing: spacing, expand: expand, view: view())
     }
 ///STools: Pin this view relative to another.
-    @ViewBuilder func alignment<Content: View>(edge: Edge, spacing: CGFloat? = nil, view: Content) -> some View {
+    @ViewBuilder func alignment<Content: View>(edge: Edge, spacing: CGFloat? = nil, expand: Bool = false, view: Content) -> some View {
         switch edge {
             case .top:
                 VStack(spacing: spacing) {
                     view
+                    if expand {
+                        Spacer()
+                    }
                     self
                 }
             case .leading:
                 HStack(spacing: spacing) {
                     view
+                    if expand {
+                        Spacer()
+                    }
                     self
                 }
             case .bottom:
                 VStack(spacing: spacing) {
                     self
+                    if expand {
+                        Spacer()
+                    }
                     view
                 }
             case .trailing:
                 HStack(spacing: spacing) {
                     self
+                    if expand {
+                        Spacer()
+                    }
                     view
                 }
         }

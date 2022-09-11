@@ -10,9 +10,10 @@ import SwiftUI
 struct EmptyStateModifier<PlaceHolder: View>: ViewModifier {
     @State var isEmpty = false
     let placeHolder: PlaceHolder
+    var shouldEmpty: Bool
     func body(content: Content) -> some View {
         ZStack {
-            if isEmpty {
+            if isEmpty || shouldEmpty {
                 placeHolder
             }
             content

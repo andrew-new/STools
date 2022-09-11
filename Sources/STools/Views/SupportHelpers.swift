@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension View {
+public extension View {
 ///STools: Listen to changes made to a property
     @ViewBuilder func change<T: Equatable>(of element: T, action: @escaping (_ value: T) -> ()) -> some View {
         if #available(iOS 14.0, macOS 11.0, *) {

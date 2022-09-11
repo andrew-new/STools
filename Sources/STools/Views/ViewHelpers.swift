@@ -7,15 +7,24 @@
 
 import SwiftUI
 
-extension View {
+public extension View {
 ///STools: Set  this view's foreground content.
-    @ViewBuilder func foreground<Content: View>(_ view: Content) -> some View {
+    @ViewBuilder func foreground<Content: ContentShape>(_ view: Content) -> some View {
+    #if canImport(GroupActivities)
+        if #available(iOS 15.0, macOS 12.0, *) {
+            self
+                .foregroundStyle(view)
+        }else {
+            self
+        }
+    #else
         self
             .overlay(view)
             .mask(self)
+    #endif
     }
 ///STools: Set  this view's foreground content.
-    @ViewBuilder func foreground<Content: View>(@ViewBuilder view: @escaping () -> Content) -> some View {
+    @ViewBuilder func foreground<Content: ShapeStyle>(@ViewBuilder view: @escaping () -> Content) -> some View {
         self
             .foreground(view())
     }

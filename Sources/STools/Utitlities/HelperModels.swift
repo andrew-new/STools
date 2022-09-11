@@ -22,6 +22,11 @@ public typealias UNView = UIView
 #elseif canImport(AppKit)
 public typealias UNView = NSView
 #endif
+#if canImport(GroupActivities)
+public typealias ContentShape = ShapeStyle
+#else
+public typealias ContentShape = View
+#endif
 
 public enum ImageQuality: CGFloat {
     case lowest = 0
@@ -35,8 +40,8 @@ public enum DateInterval {
     case day, week, month, year
 }
 
-public enum ViewEdge {
-    case top, bottom, leading, trailing, horizontal, vertical
+public enum ViewAxis {
+    case horizontal, vertical
 }
 
 public enum SwipeEdge {

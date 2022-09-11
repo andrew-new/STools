@@ -23,8 +23,8 @@ public extension View {
 #endif
     }
 ///STools: Apply conditional modifier to this view.
-    @ViewBuilder func stateModifier<Content: View>(_ state: Binding<Bool>?, @ViewBuilder builder: (Self) -> Content) -> some View {
-        if let state = state, state.wrappedValue {
+    @ViewBuilder func stateModifier<Content: View>(_ state: Bool?, @ViewBuilder builder: (Self) -> Content) -> some View {
+        if let state = state, state {
             builder(self)
         }else {
             self
@@ -38,10 +38,10 @@ public extension View {
                 completion()
             }
     }
-        #endif
+    #endif
 ///STools: Display a placeholder when this view is empty.
-    @ViewBuilder func emptyState<Content: View>(@ViewBuilder content: () -> Content) -> some View {
-        self.modifier(EmptyStateModifier(placeHolder: content()))
+    @ViewBuilder func emptyState<Content: View>(_ shouldEmpty: Bool = false, @ViewBuilder content: () -> Content) -> some View {
+        self.modifier(EmptyStateModifier(placeHolder: content(), shouldEmpty: shouldEmpty))
     }
 }
 
