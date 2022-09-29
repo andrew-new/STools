@@ -46,9 +46,29 @@ public extension View {
                 }
         }
     }
+    @ViewBuilder func onTask(priority: _Concurrency.TaskPriority? = nil, _ task: @Sendable @escaping () async -> Void) -> some View {
+        if #available(iOS 15.0, macOS 12.0, watchOS 8.0, *) {
+            if let priority = priority {
+                self
+                    .task(priority: priority, task)
+            }else {
+                self
+                    .task(task)
+            }
+        }else {
+            self
+                .onAppear {
+                    Task(priority: priority) {
+                        await task()
+                    }
+                }
+        }
+    }
 }
 
 public struct ActivityView: View {
+    public init() {
+    }
     public var body: some View {
         if #available(iOS 14.0, *) {
             ProgressView()
