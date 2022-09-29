@@ -8,20 +8,6 @@
 import SwiftUI
 
 public extension View {
-    var width: CGFloat {
-#if canImport(UIKit)
-        return UIScreen.main.bounds.width
-#elseif canImport(AppKit)
-        return Size.shared.size.width
-#endif
-    }
-    var height: CGFloat {
-#if canImport(UIKit)
-        return UIScreen.main.bounds.height
-#elseif canImport(AppKit)
-        return Size.shared.size.height
-#endif
-    }
 ///STools: Apply conditional modifier to this view.
     @ViewBuilder func stateModifier<Content: View>(_ state: Bool?, @ViewBuilder builder: (Self) -> Content) -> some View {
         if let state = state, state {

@@ -8,6 +8,20 @@
 import SwiftUI
 
 public extension View {
+    var screenWidth: CGFloat {
+#if canImport(UIKit)
+        return UIScreen.main.bounds.width
+#elseif canImport(AppKit)
+        return Size.shared.size.width
+#endif
+    }
+    var screenHeight: CGFloat {
+#if canImport(UIKit)
+        return UIScreen.main.bounds.height
+#elseif canImport(AppKit)
+        return Size.shared.size.height
+#endif
+    }
 ///STools: Adjust this view's frame with a fallback frame.
     @ViewBuilder func framey(width: CGFloat, height: CGFloat, masterWidth: CGFloat? = nil, masterHeight: CGFloat? = nil, master: Bool) -> some View {
         self
