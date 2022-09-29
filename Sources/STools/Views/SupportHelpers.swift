@@ -39,6 +39,31 @@ public extension View {
             }
         }else {
             self
+                .onAppear {
+                    Task(priority: priority) {
+                        await task()
+                    }
+                }
         }
+    }
+}
+
+public struct ActivityView: View {
+    public var body: some View {
+        if #available(iOS 14.0, *) {
+            ProgressView()
+        }else {
+            ActivityIndicatorView()
+        }
+    }
+}
+
+internal struct ActivityIndicatorView: UIViewRepresentable {
+    internal func makeUIView(context: Context) -> UIActivityIndicatorView {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.startAnimating()
+        return activityIndicator
+    }
+    internal func updateUIView(_ uiView: UIActivityIndicatorView, context: Context) {
     }
 }
