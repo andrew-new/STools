@@ -116,4 +116,23 @@ public extension View {
                 newValue.wrappedValue = value
             }
     }
+    @ViewBuilder func onSizeChange(action: @escaping (CGSize) -> Void) -> some View {
+        self
+            .background(
+                GeometryReader { reader in
+                    Color.clear
+                        .onAppear {
+                            action(reader.frame(in: .global).size)
+                        }.change(of: reader.frame(in: .global).size) { newValue in
+                            action(newValue)
+                        }
+                }
+            )
+    }
+    @ViewBuilder func onSizeChange(newValue: Binding<CGSize>) -> some View {
+        self
+            .onSizeChange { value in
+                newValue.wrappedValue = value
+            }
+    }
 }
