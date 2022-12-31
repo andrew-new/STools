@@ -16,7 +16,7 @@ public extension View {
             self
         }
     }
-    #if canImport(Charts) 
+    #if swift(>=5.7)
 ///STools: Listen to changes made to multiple properties.
     @ViewBuilder func onChange(of values: any Equatable..., completion: @escaping () -> Void) -> some View {
         self
