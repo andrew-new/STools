@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-#if canImport(AppKit)
+#if os(macOS)
 class NoInsetHostingView<V>: NSHostingView<V> where V: View {
     override var safeAreaInsets: NSEdgeInsets {
         return .init()

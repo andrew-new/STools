@@ -66,6 +66,7 @@ public extension View {
     }
 }
 
+#if canImport(UIKit)
 public struct ActivityView: View {
     public init() {
     }
@@ -87,3 +88,4 @@ internal struct ActivityIndicatorView: UIViewRepresentable {
     internal func updateUIView(_ uiView: UIActivityIndicatorView, context: Context) {
     }
 }
+#endif

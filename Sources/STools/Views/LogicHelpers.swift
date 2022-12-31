@@ -31,7 +31,7 @@ public extension View {
     }
 }
 
-#if canImport(AppKit)
+#if os(macOS)
 public class Size {
     public static var shared = Size()
     public var size = (NSScreen.main?.visibleFrame ?? .zero).size
