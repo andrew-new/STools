@@ -31,42 +31,28 @@ public extension View {
     @ViewBuilder func pin(to edge: Edge) -> some View {
         switch edge {
             case .top:
-                VStack {
-                    self
-                    Spacer()
-                }
+                self
+                    .frame(maxHeight: .infinity, alignment: .top)
             case .leading:
-                HStack {
-                    self
-                    Spacer()
-                }
+                self
+                    .frame(maxWidth: .infinity, alignment: .leading)
             case .bottom:
-                VStack {
-                    Spacer()
-                    self
-                }
+                self
+                    .frame(maxHeight: .infinity, alignment: .bottom)
             case .trailing:
-                HStack {
-                    Spacer()
-                    self
-                }
+                self
+                    .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
 ///STools: Center the view along an axis.
     @ViewBuilder func center(_ axis: ViewAxis) -> some View {
         switch axis {
             case .horizontal:
-                HStack {
-                    Spacer()
-                    self
-                    Spacer()
-                }
+                self
+                    .frame(maxWidth: .infinity, alignment: .center)
             case .vertical:
-                VStack {
-                    Spacer()
-                    self
-                    Spacer()
-                }
+                self
+                    .frame(maxHeight: .infinity, alignment: .center)
         }
     }
 ///STools: Pin this view relative to another.
@@ -148,5 +134,13 @@ public extension View {
             .onSizeChange { value in
                 newValue.wrappedValue = value
             }
+    }
+    @ViewBuilder func hidden(_ value: Bool) -> some View {
+        if !value {
+            self
+        }
+    }
+    @ViewBuilder func hidden(_ value: @escaping () -> Bool) -> some View {
+        hidden(value())
     }
 }
