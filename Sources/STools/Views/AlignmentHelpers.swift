@@ -41,7 +41,7 @@ public extension View {
                     .frame(maxHeight: .infinity, alignment: .bottom)
             case .trailing:
                 self
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
         }
     }
 ///STools: Center the view along an axis.
