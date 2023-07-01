@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-@available(iOS 14.0, *)
+@available(iOS 14.0, macOS 12.0, *)
 @propertyWrapper public struct Defaults<Value: Codable>: DynamicProperty {
     @AppStorage("") private var defaultsData: Data?
     public let key: String
