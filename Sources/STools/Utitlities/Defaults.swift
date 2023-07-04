@@ -13,7 +13,7 @@ import SwiftUI
     public let key: String
     public let defaultValue: Value
     public let storage: UserDefaults
-    public init(wrappedValue defaultValue: Value, key: String, storage: UserDefaults) {
+    public init(wrappedValue defaultValue: Value, key: String, storage: UserDefaults = .standard) {
         self._defaultsData = AppStorage(key, store: storage)
         self.defaultValue = defaultValue
         self.key = key
@@ -30,26 +30,12 @@ import SwiftUI
             return (try? JSONDecoder().decode(Value.self, from: data)) ?? defaultValue
         }
         nonmutating set {
-            if let oldData = storage.data(forKey: key) {
-                storage.set(oldData, forKey: key + "Old")
-            }
             if let dataValue = newValue as? Data {
                 defaultsData = dataValue
             }else {
                 guard let data = try? JSONEncoder().encode(newValue) else {return}
                 defaultsData = data
             }
-        }
-    }
-    public var oldValue: Value {
-        get {
-            guard let data = storage.data(forKey: key + "Old") else {
-                return defaultValue
-            }
-            if let dataValue = data as? Value {
-                return dataValue
-            }
-            return (try? JSONDecoder().decode(Value.self, from: data)) ?? defaultValue
         }
     }
     public var projectedValue: Binding<Value> {

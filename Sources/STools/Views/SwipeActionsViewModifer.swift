@@ -56,7 +56,7 @@ public struct SwipeActionsViewModifer: ViewModifier {
                 .padding(.trailing, -leadingPadding)
                 .highPriorityGesture(gesture).padding(.trailing, trailingPadding)
                 .padding(.leading, leadingPadding)
-                .change(of: enabled) { newValue in
+                .onChange(enabled) { newValue in
                     trailingPadding = newValue ? trailingPadding: 0
                     leadingPadding = newValue ? leadingPadding: 0
                 }

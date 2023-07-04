@@ -8,9 +8,6 @@
 import SwiftUI
 
 public extension Image {
-    func asData(_ quality: ImageQuality) -> Data? {
-        return self.unImage.asData(quality)
-    }
     init(data: Data?) {
         self.init("")
         if let data = data, let image = UNImage(data: data) {
