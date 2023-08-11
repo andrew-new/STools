@@ -7,7 +7,7 @@ let package = Package(
     name: "STools",
     platforms: [
            .iOS(.v13),
-           .macOS(.v10_15),
+           .macOS(.v10_13),
            .watchOS(.v6)
        ],
     products: [
